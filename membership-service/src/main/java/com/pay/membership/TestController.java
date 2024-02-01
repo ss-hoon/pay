@@ -1,4 +1,4 @@
-package org.example;
+package com.pay.membership;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
