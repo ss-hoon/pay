@@ -1,11 +1,11 @@
 package com.pay.membership.adapter.out.persistence;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class MembershipJpaEntity {
 
     @Id
-    @Generated
+    @GeneratedValue
     private Long id;
 
     private String name;
@@ -28,4 +28,12 @@ public class MembershipJpaEntity {
     private boolean isValid;
 
     private boolean isCorp;
+
+    public MembershipJpaEntity(final String name, final String email, final String address, final boolean isValid, final boolean isCorp) {
+        this.name = name;
+        this.email = email;
+        this.address = address;
+        this.isValid = isValid;
+        this.isCorp = isCorp;
+    }
 }

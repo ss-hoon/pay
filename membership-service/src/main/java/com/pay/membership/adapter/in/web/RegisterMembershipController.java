@@ -5,6 +5,7 @@ import com.pay.membership.application.port.in.RegisterMembershipUseCase;
 import com.pay.membership.domain.Membership;
 import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +20,18 @@ public class RegisterMembershipController {
     private final RegisterMembershipUseCase registerMembershipUseCase;
 
     @PostMapping("/register")
-    Membership registerMembership(@RequestBody RegisterMembershipRequest request) {
+    ResponseEntity<Membership> registerMembership(@RequestBody RegisterMembershipRequest request) {
 
         // Request -> Command
         RegisterMembershipCommand command = RegisterMembershipCommand.builder()
                                                                      .name(request.getName())
-                                                                     .address(request.getAddress())
                                                                      .email(request.getEmail())
+                                                                     .address(request.getAddress())
                                                                      .isValid(true)
                                                                      .isCorp(request.isCorp())
                                                                      .build();
 
         // Usecase
-        return registerMembershipUseCase.registerMembership(command);
+        return ResponseEntity.ok(registerMembershipUseCase.registerMembership(command));
     }
 }
